@@ -7,4 +7,6 @@ router.get('/home', (req, res, next) =>{
 });
 
 
+
+// export the router to be able to use in other files
 module.exports = router;
