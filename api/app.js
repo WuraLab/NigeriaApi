@@ -6,15 +6,21 @@
  const bodyParser = require('body-parser');
  const dotenv = require('dotenv');
 
+ dotenv.config();
+
+//  import the routes here
+ const indexRouter = require("./routes/index.js");
 
  const app = express();
 
 
- app.use(express.json());
- app.use(express.urlencoded());
-
  app.use(logger('dev'));
+ app.use(express.json());
+ app.use(express.urlencoded({ extended: false}));
  app.use(cookieParser());
+
+ app.use("/api/v1/", indexRouter);
+
  
 
  // Respond with welcome... for requests that hit our root "/"
