@@ -1,0 +1,31 @@
+{
+  "name": "nigeriaapi",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha ./test/* --exit"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/WuraLab/NigeriaApi.git"
+  },
+  "keywords": [
+    "NigeriaAPi",
+    "nigeria"
+  ],
+  "author": "wuralab",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/WuraLab/NigeriaApi/issues"
+  },
+  "homepage": "https://github.com/WuraLab/NigeriaApi#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "supertest": "^4.0.2"
+  },
+  "devDependencies": {
+    "mocha": "^8.0.1",
+    "superagent": "^5.2.2"
+  }
+}
