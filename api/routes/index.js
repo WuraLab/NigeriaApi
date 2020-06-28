@@ -1,12 +1,10 @@
-const express = require('express');
+const express = require("express");
+
 const router = express.Router();
 
-
-router.get('/home', (req, res, next) =>{
-    res.status(200).send("i am working sha");
+router.get("/home", (req, res) => {
+  res.status(200).send("Home route working");
 });
-
-
 
 // export the router to be able to use in other files
 module.exports = router;
