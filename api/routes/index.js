@@ -1,5 +1,10 @@
 const express = require("express");
-const { User } = require("../models");
+// const sequelize = require("sequelize");
+
+// const Users = require("../models").users;
+const db = require("../models/index");
+// eslint-disable-next-line prefer-destructuring
+const Users = db.users;
 
 const router = express.Router();
 
@@ -9,11 +14,11 @@ router.get("/home", (req, res) => {
 
 router.post("/users", async (req, res) => {
   const {
-    firstName, lastName, email, password
+    username, email, password
   } = req.body;
 
-  User.create({
-    firstName, lastName, email, password
+  Users.create({
+    username, email, password
   }).then((result) => res.status(200).json({
     response: {
       message: "signUp succesful",
@@ -22,7 +27,7 @@ router.post("/users", async (req, res) => {
   })).catch((e) => res.status(500).json({
     response: {
       message: "This isnt't you, it is us and we are sorry",
-      e
+      error: e.message
     }
   }));
 });
