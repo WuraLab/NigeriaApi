@@ -2,8 +2,6 @@
 
 ## University API
 
-
-
 # App Details
 .......
 ................................................
@@ -23,8 +21,6 @@ The app will consist of:
 
 
 # Proposed Stack
-
 JavaScript 
-
 
 # Top-level directory layout

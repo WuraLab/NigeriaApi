@@ -13,9 +13,7 @@ router.get("/home", (req, res) => {
 });
 
 router.post("/users", async (req, res) => {
-  const {
-    username, email, password
-  } = req.body;
+  const { username, email, password } = req.body;
 
   Users.create({
     username, email, password
