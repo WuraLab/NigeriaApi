@@ -2,3 +2,4 @@ node_modules
 .env
 .gitignore
 keep
+SELECT * FROM "users" LIMIT 1000;.pgsql

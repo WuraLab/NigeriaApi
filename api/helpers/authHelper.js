@@ -1,0 +1,32 @@
+const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
+
+// gets the secret from env
+const { JWTSECRET } = process.env;
+
+// hashpassword using the bcrypt package
+const hashPassword = (plainPassword) => {
+  // checks if there is password provided
+  if (!plainPassword) {
+    throw new Error("Error hashing password");
+  }
+
+  // salt round which bcrypt will use
+  const salt = bcrypt.genSaltSync(10);
+
+  // return the generated hashed string
+  return bcrypt.hashSync(plainPassword, salt);
+};
+
+// function to check if the password matches with the hashed string in the db
+const isPasswordValid = (hashedPassword, plainPassword) => bcrypt.compareSync(plainPassword, hashedPassword);
+
+// function to generate a token
+const generateToken = (payload) => jwt.sign(payload, JWTSECRET, { expiresIn: "1h" });
+
+// function to decode the token
+const decodeToken = (token) => jwt.verify(token, JWTSECRET);
+
+module.exports = {
+  hashPassword, isPasswordValid, generateToken, decodeToken
+};
