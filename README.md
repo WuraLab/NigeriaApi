@@ -3,12 +3,6 @@
 ## University API
 
 # App Details
-### how to get started
-to run this app locally, you should have node js installed
-run git clone repo link
-cd into the directory
-run npm install
-
 .......
 ................................................
 ................................
@@ -97,7 +91,17 @@ git checkout <branch_name>
 
 ### To start the App and run locally
 
-Using npm
+Using node
+```
+npm start
+```    
+or nodemon(make sure you have nodemon installed on your local sysytem, perhaps installed globally using)
+
+```
+npm install -g nodemon
+```    
+
+then your run with 
 
 ```
 npm run dev
