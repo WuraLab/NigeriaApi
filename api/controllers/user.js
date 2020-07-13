@@ -3,13 +3,13 @@ const mailer = require("../helpers/mailer");
 const { generateMailForSignup } = require("./email/helper");
 
 const Users = db.users;
-const { hashPassword, isPasswordValid, generateToken } = require("../helpers/authHelper");
+const { hashPassword, generateToken } = require("../helpers/authHelper");
 
 exports.signup = async (req, res) => {
+  // get values from body
+  // the password should be atleast, contain atleast one number,
+  //  it only accept this symbols !@#$%^&*;
   try {
-    // get values from body
-    // the password should be atleast, contain atleast one number,
-    //  it only accept this symbols !@#$%^&*;
     const {
       username, email, password, confirmPassword
     } = req.body;

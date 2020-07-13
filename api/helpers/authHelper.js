@@ -19,7 +19,7 @@ const hashPassword = (plainPassword) => {
 };
 
 // function to check if the password matches with the hashed string in the db
-const isPasswordValid = (hashedPassword, plainPassword) => bcrypt.compareSync(plainPassword, hashedPassword);
+const isPasswordValid = (hashedPass, plainPass) => bcrypt.compareSync(plainPass, hashedPass);
 
 // function to generate a token
 const generateToken = (payload) => jwt.sign(payload, JWTSECRET, { expiresIn: "1h" });

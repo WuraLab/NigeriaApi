@@ -1,7 +1,3 @@
-// const joi = require("@hapi/joi");
-const express = require("express");
-// const Joi = require("@hapi/joi");
-
 const validator = (schema) => (req, res, next) => {
   const validationValue = schema.validate(req.body, {
     abortEarly: false,
@@ -9,7 +5,6 @@ const validator = (schema) => (req, res, next) => {
     convert: false,
     skipFunctions: true
   });
-
   if (validationValue.error) {
     const errorMessages = validationValue.error.details.map((error) => error.message);
 
