@@ -17,7 +17,11 @@ exports.signup = async (req, res) => {
     if (password !== confirmPassword) {
       return res.status(403).json({ response: "confirm password not matched with password" });
     }
-
+    // check if user exist in Db
+    const existingUser = await Users.findOne(({ where: { email } }));
+    if (existingUser) {
+      return res.status(400).json({ response: "User with this email already exist" });
+    }
     // hash password
     const hash = await hashPassword(confirmPassword);
     const token = await generateToken({ email });
