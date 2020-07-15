@@ -5,7 +5,11 @@
   "scripts": {
     "start": "node api/bin/www",
     "dev": "nodemon api/bin/www",
-    "test": "mocha api/test/* --exit"
+    "test": "mocha api/test/* --exit",
+    "lint-md": "remark ."
+  },
+  "remarkConfig":{
+    "plugins": ["remark-preset-lint-recommended"]
   },
   "repository": {
     "type": "git",
@@ -36,6 +40,9 @@
     "nunjucks": "^3.2.1",
     "pg": "^8.2.1",
     "pg-hstore": "^2.3.3",
+    "remark-cli": "^8.0.0",
+    "remark-lint": "^7.0.1",
+    "remark-preset-lint-recommended": "^4.0.1",
     "sequelize": "^6.2.4",
     "sequelize-cli": "^6.1.0",
     "supertest": "^4.0.2"
