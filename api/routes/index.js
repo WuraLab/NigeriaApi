@@ -5,9 +5,9 @@ const validator = require("../middlewares/validationMid");
 const userSchema = require("../helpers/validationSchema");
 const { signup } = require("../controllers/user");
 
-router.get("/home", (req, res) => {
-  res.status(200).send("Home route working");
-});
+// router.get("/home", (req, res) => {
+//   res.status(200).send("Home route working");
+// });
 
 router.post("/users", validator(userSchema), signup);
 

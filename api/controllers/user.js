@@ -3,7 +3,7 @@ const mailer = require("../helpers/mailer");
 const { generateMailForSignup } = require("./email/helper");
 
 const Users = db.users;
-const { hashPassword, generateToken } = require("../helpers/authHelper");
+const { hashPassword, tokengen } = require("../helpers/authHelper");
 
 exports.signup = async (req, res) => {
   // get values from body
@@ -24,7 +24,7 @@ exports.signup = async (req, res) => {
     }
     // hash password
     const hash = await hashPassword(confirmPassword);
-    const token = await generateToken({ email });
+    const token = await tokengen({ email });
     // console.log(token);
     // create userdetails to Database
     const createdUser = await Users.create({
