@@ -9,8 +9,7 @@
     "lint-md": "remark ."
   },
   "remarkConfig":{
-    "plugins": ["remark-preset-lint-recommended"],
-    "fences": true
+    "plugins": ["remark-preset-lint-recommended"]
   },
   "repository": {
     "type": "git",
