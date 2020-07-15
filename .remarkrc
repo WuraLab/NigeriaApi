@@ -1,0 +1,12 @@
+{
+  "settings": {
+    "bullet": "*",
+    "ruleRepetition": 3,
+    "fences": true
+  },
+  "plugins": [
+    "inline-links",
+    "lint-recommended",
+    "remark-preset-lint-recommended"
+  ]
+}
