@@ -70,38 +70,38 @@ JavaScript
 
 ### Clone the repository 
 
-```
-git clone https://github.com/WuraLab/NigeriaApi.git
-```
+    ```
+    git clone https://github.com/WuraLab/NigeriaApi.git
+    ```
 
 ### Install all dependencies
 
 Using npm
 
-```
-npm install
-```
+    ```
+    npm install
+    ```
 
 ### Check out to the branch
 
-```
-git checkout <branch_name>
-```
+    ```
+    git checkout <branch_name>
+    ```
 
 ### To start the App and run locally
 
 Using node
-```
-npm start
-```    
+
+    ```
+    npm start
+    ```    
 or nodemon(make sure you have nodemon installed on your local sysytem, perhaps installed globally using)
 
-```
-npm install -g nodemon
-```    
-
+    ```
+    npm install -g nodemon
+    ```    
 then you run the app with 
 
-```
-npm run dev
-```    
+    ```
+    npm run dev
+    ```    
