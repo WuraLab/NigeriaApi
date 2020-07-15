@@ -66,8 +66,7 @@ JavaScript
         ┣ 📜package-lock.json
         ┣ 📜README.md
 
-
-# How to setup project and run locally
+## How to setup project and run locally
 
 ### Clone the repository 
 
@@ -101,7 +100,7 @@ or nodemon(make sure you have nodemon installed on your local sysytem, perhaps i
 npm install -g nodemon
 ```    
 
-then your run with 
+then you run the app with 
 
 ```
 npm run dev
