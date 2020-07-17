@@ -7,8 +7,8 @@ describe("GET /", () => {
   });
 });
 
-describe("GET /api/v1/home", () => {
-  it("respond with i am working sha", (done) => {
-    request(app).get("/api/v1/home").expect("Home route working", done);
+describe("POST /api/v1/users", () => {
+  it("registers users and save into the DB", (done) => {
+    request(app).post("/api/v1/users").expect("SignUp successful, check your email for validation", done);
   });
 });
