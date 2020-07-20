@@ -3,7 +3,9 @@ const mailer = require("../helpers/mailer");
 const { generateMailForSignup } = require("./email/helper");
 
 const Users = db.users;
-const { hashPassword, tokengen } = require("../helpers/authHelper");
+const {
+  hashPassword, tokengen, decodeToken, decoder
+} = require("../helpers/authHelper");
 
 exports.signup = async (req, res) => {
   // get values from body
@@ -25,13 +27,13 @@ exports.signup = async (req, res) => {
     // hash password
     const hash = await hashPassword(confirmPassword);
     const token = await tokengen({ email });
-    // console.log(token);
+    console.log(token);
     // create userdetails to Database
     const createdUser = await Users.create({
       email, username, password: hash
     });
 
-    const validationLink = `http://localhost:3000/api/v1/validate/${token}`;
+    const validationLink = `${process.env.BASE_URL}/users/validate/${token}`;
 
     // generateMailForSignup is  a function that returns an html file
     const options = {
@@ -43,7 +45,36 @@ exports.signup = async (req, res) => {
 
     // function to send the mail
     await mailer(options);
-    return res.status(201).json({ response: "SignUp successful, check your email for validation", createdUser });
+    return res.status(201).json({ response: "SignUp successful, check your email for validation", createdUser, token });
+  } catch (error) {
+    return res.status(500).json({ response: error.message });
+  }
+};
+
+exports.validate = async (req, res) => {
+  const { token } = req.query;
+
+  try {
+    // decode the token
+    const decodedToken = await decodeToken(token);
+    const decode = decodedToken !== null && await decoder(token);
+    const associatedmail = decode !== null ? decode.email : "";
+
+    // checks if user exists with that token
+
+    if (!decodedToken.email) {
+      return res.status(404).json({ response: "There is user with this token, please make sure you are clicking the correct link" });
+    }
+    // find the user with that token
+    const existingUser = await Users.findOne(({ where: { email: associatedmail } }));
+
+    // if user users exist update the users data to activate true
+    if (existingUser) {
+      const getemail = existingUser.email;
+      const update = await Users.update({ activated: true }, { where: { email: getemail } });
+    }
+    // return a succesfully page saying account has been activated
+    return res.status(200).send(`hello ${associatedmail} you account is now fully activated, explore the NigeriaAPi`);
   } catch (error) {
     return res.status(500).json({ response: error.message });
   }

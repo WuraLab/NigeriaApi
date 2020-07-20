@@ -24,9 +24,12 @@ const isPasswordValid = (hashedPass, plainPass) => bcrypt.compareSync(plainPass,
 // function to generate a token
 const tokengen = (payload) => jwt.sign(payload, JWTSECRET, { expiresIn: "1h" });
 
-// function to decode the token
+// function to verify and decode the token
 const decodeToken = (token) => jwt.verify(token, JWTSECRET);
 
+// function to decode token
+const decoder = (token) => jwt.decode(token);
+
 module.exports = {
-  hashPassword, isPasswordValid, tokengen, decodeToken
+  hashPassword, isPasswordValid, tokengen, decodeToken, decoder
 };

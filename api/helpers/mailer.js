@@ -11,7 +11,6 @@ const mailer = async (options) => {
     service: "gmail",
     host: MAIL_HOST,
     auth: {
-
       user: MAIL_USERNAME, // gmail created just for testing purposes
       pass: MAIL_PASSWORD // for testing purposes
     }

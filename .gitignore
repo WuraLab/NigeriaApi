@@ -3,3 +3,6 @@ node_modules
 .gitignore
 keep
 SELECT * FROM "users" LIMIT 1000;.pgsql
+-- CREATE TABLE university_data( Name va.pgsql
+SELECT * FROM "university_data" LIMIT 10.pgsql
+uniNigeriaAPI.csv
