@@ -11,9 +11,7 @@ exports.signup = async (req, res) => {
   // get values from body
   // the password should be atleast, contain atleast one number,
   //  it only accept this symbols !@#$%^&*;
-  const {
-    username, email, password, confirmPassword
-  } = req.body;
+  const { username, email, password, confirmPassword } = req.body;
   try {
     // checks if password and confirmPasword match
     if (password !== confirmPassword) {
@@ -27,7 +25,6 @@ exports.signup = async (req, res) => {
     // hash password
     const hash = await hashPassword(confirmPassword);
     const token = await tokengen({ email });
-    console.log(token);
     // create userdetails to Database
     const createdUser = await Users.create({
       email, username, password: hash
@@ -71,7 +68,7 @@ exports.validate = async (req, res) => {
     // if user users exist update the users data to activate true
     if (existingUser) {
       const getemail = existingUser.email;
-      const update = await Users.update({ activated: true }, { where: { email: getemail } });
+      await Users.update({ activated: true }, { where: { email: getemail } });
     }
     // return a succesfully page saying account has been activated
     return res.status(200).send(`hello ${associatedmail} you account is now fully activated, explore the NigeriaAPi`);

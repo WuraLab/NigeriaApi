@@ -1,7 +1,7 @@
 /* eslint-disable no-use-before-define */
 const request = require("supertest");
-const assert = require("assert");
-const should = require("chai").should();
+// const assert = require("assert");
+// const should = require("chai").should();
 const { expect } = require("chai");
 
 const app = require("../app");
