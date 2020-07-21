@@ -17,7 +17,7 @@ exports.signup = async (req, res) => {
   try {
     // checks if password and confirmPasword match
     if (password !== confirmPassword) {
-      return res.status(403).json({ response: "confirm password not matched with password" });
+      return res.status(403).json({ response: "confirm password doesn't match with password" });
     }
     // check if user exist in Db
     const existingUser = await Users.findOne(({ where: { email } }));
