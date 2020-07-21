@@ -2,7 +2,7 @@ const db = require("../models/index");
 const mailer = require("../helpers/mailer");
 const { generateMailForSignup } = require("./email/helper");
 
-const Users = db.users;
+const Users = db.Users;
 const {
   hashPassword, tokengen, decodeToken, decoder
 } = require("../helpers/authHelper");
@@ -30,7 +30,7 @@ exports.signup = async (req, res) => {
       email, username, password: hash
     });
 
-    const validationLink = `${process.env.BASE_URL}/users/validate/${token}`;
+    const validationLink = `${process.env.BASE_URL}/validate/users/?token=${token}`;
 
     // generateMailForSignup is  a function that returns an html file
     const options = {
