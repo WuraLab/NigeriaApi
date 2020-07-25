@@ -2,7 +2,6 @@ const jwt = require("jsonwebtoken");
 const db = require("../models/index");
 
 const { Users } = db;
-const { JWTSECRET } = process.env;
 
 const validateUserToken = async (req, res, next) => {
   const { token } = req.query;
