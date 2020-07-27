@@ -18,6 +18,7 @@ module.exports = {
     "comma-dangle": ["error", "never"],
     "no-param-reassign": ["error", { props: false }],
     quotes: ["error", "double"],
-    camelcase: ["error", { properties: "never" }]
+    camelcase: ["error", { properties: "never" }],
+    parserOptions: { sourceType: "module" }
   }
 };

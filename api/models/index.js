@@ -10,15 +10,14 @@ const env = process.env.NODE_ENV || "development";
 const config = require(`${__dirname}/../config/config.js`)[env];
 const db = {};
 
-// const sequelize = new Sequelize("postgres://trxbthfngzrayf:23054ed29fc3e310ae2000c0be157d980dda0a95af17e5c18a936a46f8c4fb1d@ec2-50-16-198-4.compute-1.amazonaws.com:5432/db74jvlfa32vit");
 let sequelize;
-// if (config.use_env_variable) {
-//   sequelize = new Sequelize(process.env[config.use_env_variable], config);
-//   console.log("env database connected");
-// } else {
+if (config.use_env_variable) {
+  sequelize = new Sequelize(process.env[config.use_env_variable], config);
+  console.log("env database connected");
+} else {
   sequelize = new Sequelize(config.database, config.username, config.password, config);
   console.log("config database connected");
-// }
+}
 
 fs
   .readdirSync(__dirname)

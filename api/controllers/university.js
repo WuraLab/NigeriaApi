@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 const db = require("../models/index");
 
 const { university_data } = db;

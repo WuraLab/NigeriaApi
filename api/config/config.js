@@ -28,15 +28,15 @@ module.exports = {
     },
     ssl: true,
     logging: false
+  },
+  test: {
+    username: LOCAL_DATABASE_USER,
+    password: LOCAL_DATABASE_PASSWORD,
+    database: LOCAL_DATABASE_NAME,
+    host: LOCAL_DATABASE_HOST,
+    port: LOCAL_DATABASE_PORT,
+    dialect: "postgres"
   }
-  // test: {
-  //   username: LOCAL_DATABASE_USER,
-  //   password: LOCAL_DATABASE_PASSWORD,
-  //   database: LOCAL_DATABASE_NAME,
-  //   host: LOCAL_DATABASE_HOST,
-  //   port: LOCAL_DATABASE_PORT,
-  //   dialect: "postgres"
-  // }
   // "production": {
   //   "username": "root",
   //   "password": null,
