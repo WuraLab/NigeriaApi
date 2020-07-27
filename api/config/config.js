@@ -18,17 +18,25 @@ module.exports = {
     database: DEV_DATABASE_NAME,
     host: DEV_DATABASE_HOST,
     port: DEV_DATABASE_PORT,
-    dialect: "postgres"
-    // logging: false
-  },
-  test: {
-    username: LOCAL_DATABASE_USER,
-    password: LOCAL_DATABASE_PASSWORD,
-    database: LOCAL_DATABASE_NAME,
-    host: LOCAL_DATABASE_HOST,
-    port: LOCAL_DATABASE_PORT,
-    dialect: "postgres"
+    dialect: "postgres",
+    dialectOptions: {
+      ssl: {
+        require: true,
+        rejectUnauthorized: false
+      },
+      keepAlive: true
+    },
+    ssl: true,
+    logging: false
   }
+  // test: {
+  //   username: LOCAL_DATABASE_USER,
+  //   password: LOCAL_DATABASE_PASSWORD,
+  //   database: LOCAL_DATABASE_NAME,
+  //   host: LOCAL_DATABASE_HOST,
+  //   port: LOCAL_DATABASE_PORT,
+  //   dialect: "postgres"
+  // }
   // "production": {
   //   "username": "root",
   //   "password": null,
