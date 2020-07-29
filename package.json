@@ -17,9 +17,13 @@
     "type": "git",
     "url": "git+https://github.com/WuraLab/NigeriaApi.git"
   },
+  "engines": {
+    "node": "10.x"
+  },
   "keywords": [
     "NigeriaAPi",
-    "nigeria"
+    "nigeria",
+    "heroku"
   ],
   "author": "wuralab",
   "license": "ISC",
