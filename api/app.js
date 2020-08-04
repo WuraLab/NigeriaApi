@@ -6,13 +6,16 @@ const cookieParser = require("cookie-parser");
 const logger = require("morgan");
 const bodyParser = require("body-parser");
 const dotenv = require("dotenv");
+const cors = require("cors");
 
 dotenv.config();
+
 
 //  import the routes here
 const indexRouter = require("./routes/index.js");
 
 const app = express();
+
 
 app.use(logger("dev"));
 app.use(express.json());

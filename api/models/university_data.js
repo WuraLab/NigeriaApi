@@ -16,22 +16,22 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   university_data.init({
-    name: DataTypes.STRING,
-    state: DataTypes.STRING,
-    abbrevation: DataTypes.STRING,
-    location: DataTypes.STRING,
-    type: DataTypes.STRING,
-    founded: DataTypes.STRING,
-    location_address: DataTypes.STRING,
-    number_of_students: DataTypes.STRING,
-    chancellor: DataTypes.STRING,
-    pro_chancellor: DataTypes.STRING,
-    vice_chancellor: DataTypes.STRING,
-    url: DataTypes.STRING,
-    social_media_handle_url: DataTypes.STRING,
-    number_of_faculties: DataTypes.STRING,
-    motto: DataTypes.STRING,
-    programme_offered: DataTypes.STRING
+    Name: DataTypes.STRING,
+    State: DataTypes.STRING,
+    Abbrevation: DataTypes.STRING,
+    Location: DataTypes.STRING,
+    Type: DataTypes.STRING,
+    Founded: DataTypes.STRING,
+    Location_Address: DataTypes.STRING,
+    Number_of_students: DataTypes.STRING,
+    Chancellor: DataTypes.STRING,
+    Pro_chancellor: DataTypes.STRING,
+    Vice_chancellor: DataTypes.STRING,
+    URl: DataTypes.STRING,
+    Social_media_handle_URL: DataTypes.STRING,
+    Number_of_faculties: DataTypes.STRING,
+    Motto: DataTypes.STRING,
+    Programme_offered: DataTypes.STRING,
   }, {
     sequelize,
     modelName: "university_data"

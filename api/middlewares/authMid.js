@@ -22,7 +22,7 @@ const validateUserToken = async (req, res, next) => {
     req.user = response;
     next();
   } catch (error) {
-    return res.status(500).json({ response: error });
+    return res.status(500).json({ response: error.message });
   }
 };
 
