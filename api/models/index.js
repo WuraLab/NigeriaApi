@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 /* eslint-disable import/no-dynamic-require */
 /* eslint-disable global-require */
 const fs = require("fs");
@@ -12,8 +13,10 @@ const db = {};
 let sequelize;
 if (config.use_env_variable) {
   sequelize = new Sequelize(process.env[config.use_env_variable], config);
+  console.log("env database connected");
 } else {
   sequelize = new Sequelize(config.database, config.username, config.password, config);
+  console.log("config database connected");
 }
 
 fs

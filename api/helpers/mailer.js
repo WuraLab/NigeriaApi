@@ -6,7 +6,6 @@ const {
   MAIL_HOST, MAIL_FROM_ADDRESS, MAIL_USERNAME, MAIL_PASSWORD
 } = process.env;
 const mailer = async (options) => {
-  console.log("i got");
   const fastaMailer = await nodemailer.createTransport(smtpTransport({
     service: "gmail",
     host: MAIL_HOST,
