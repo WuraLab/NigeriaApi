@@ -2,7 +2,8 @@ const {
   DEV_DATABASE_NAME,
   DEV_DATABASE_USER,
   DEV_DATABASE_PASSWORD,
-  DEV_DATABASE_HOST
+  DEV_DATABASE_HOST,
+  DEV_DATABASE_PORT
 } = process.env;
 
 module.exports = {
@@ -11,6 +12,7 @@ module.exports = {
     password: DEV_DATABASE_PASSWORD,
     database: DEV_DATABASE_NAME,
     host: DEV_DATABASE_HOST,
+    port: DEV_DATABASE_PORT,
     dialect: "postgres"
     // logging: false
   }

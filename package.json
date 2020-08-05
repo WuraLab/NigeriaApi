@@ -5,15 +5,25 @@
   "scripts": {
     "start": "node api/bin/www",
     "dev": "nodemon api/bin/www",
-    "test": "mocha api/test/* --exit"
+    "test": "mocha --timeout 10000 api/test/* --exit",
+    "lint-md": "remark ."
+  },
+  "remarkConfig": {
+    "plugins": [
+      "remark-preset-lint-recommended"
+    ]
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/WuraLab/NigeriaApi.git"
   },
+  "engines": {
+    "node": "10.x"
+  },
   "keywords": [
     "NigeriaAPi",
-    "nigeria"
+    "nigeria",
+    "heroku"
   ],
   "author": "wuralab",
   "license": "ISC",
@@ -23,13 +33,23 @@
   "homepage": "https://github.com/WuraLab/NigeriaApi#readme",
   "dependencies": {
     "@bayoopesanya/findenv": "^1.0.5",
+    "@hapi/joi": "^17.1.1",
+    "bcrypt": "^5.0.0",
     "body-parser": "^1.19.0",
+    "chai": "^4.2.0",
     "cookie-parser": "^1.4.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
     "morgan": "^1.10.0",
+    "nodemailer": "^6.4.10",
+    "nodemailer-smtp-transport": "^2.7.4",
+    "nunjucks": "^3.2.1",
     "pg": "^8.2.1",
     "pg-hstore": "^2.3.3",
+    "remark-cli": "^8.0.0",
+    "remark-lint": "^7.0.1",
+    "remark-preset-lint-recommended": "^4.0.1",
     "sequelize": "^6.2.4",
     "sequelize-cli": "^6.1.0",
     "supertest": "^4.0.2"
