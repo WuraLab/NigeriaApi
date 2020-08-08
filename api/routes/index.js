@@ -14,5 +14,6 @@ router.get("/validate/users", validate);
 // UNIVERSIRY RELATED ENDPOINT
 router.get("/university", validateUserToken, allUniversity);
 
+
 // export the router to be able to use in other files
 module.exports = router;

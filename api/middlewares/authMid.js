@@ -11,7 +11,7 @@ const validateUserToken = async (req, res, next) => {
   }
   try {
     const decoded = jwt.decode(token);
-    const response = await Users.findOne(({ where: { email: decoded.email } }));
+    const response = await Users.findOne(({ attributes: ["email"] , where: { email: decoded.email } }));
 
     if (!response) {
       return res.status(403).end();
