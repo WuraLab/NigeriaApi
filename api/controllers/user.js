@@ -1,6 +1,7 @@
 const db = require("../models/index");
 const mailer = require("../helpers/mailer");
 const { generateMailForSignup } = require("./email/helper");
+const { generateApikey, confirmApikey } = require("../helpers/generateApikey")
 
 const { Users } = db;
 const {
@@ -74,8 +75,13 @@ exports.validate = async (req, res) => {
       const getemail = existingUser.email;
       await Users.update({ activated: true }, { where: { email: getemail } });
     }
+
+    // generate the user apikey
+    const userApikey = generateApikey(existingUser.email);
+
+
     // return a succesfully page saying account has been activated
-    return res.status(200).send(`hello ${associatedmail} you account is now fully activated, explore the NigeriaAPi`);
+    return res.status(200).send(`hello ${associatedmail} you account is now fully activated, and your apikey is ${userApikey} explore the NigeriaAPi`);
   } catch (error) {
     return res.status(500).json({ response: error.message });
   }
