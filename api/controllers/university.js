@@ -2,31 +2,38 @@
 const db = require("../models/index");
 const { Op } = require("sequelize")
 const { university_data } = db;
+const query = require("../helpers/query");
 
 exports.allUniversity = async (req, res) => {
-  const { type, dateRange, limit } = req.query;
+  const { limit } = req.query;
   if (!req.user || req.user === undefined) {
     return res.status(403).json({ response: "you dont have access to this endpoint" });
   }
-  let response;
-  // check for all the query parameter here and run each one by one
-  if (req.query) {
-    let Type = type ?  type  : "";
-    let founded = dateRange.length > 1 ?  {[Op.gte]: dateRange } : " ";
-    response = await university_data.findAll({
-      attributes: {
-        exclude: ["createdAt", "updatedAt"]
-      },
-      where: {
-         Type : req.query.type,
-         Founded: {[Op.gte]: dateRange }
-      }
-    });
-  } else {
-    response = await university_data.findAll({ attributes: { exclude: ["createdAt", "updatedAt"] } });
+
+  const dbQuery = query(req.query);
+
+  try {
+    let response;
+    // check for all the query parameter here and run each one by one
+    if (req.query) {
+      response = await university_data.findAll({
+        limit,
+        attributes: {
+          exclude: ["createdAt", "updatedAt"]
+        },
+        where: dbQuery
+      });
+    } else {
+      response = await university_data.findAll({limit, attributes: { exclude: ["createdAt", "updatedAt"] } });
+    }
+    return res.status(200).json({ length: response.length, response: response });
+  } catch (error) {
+    return res.status(500).json({ response: `internal server error ${error}` })
+
   }
-  return res.status(200).json({ length: response.length, response: response });
+ 
 };
+
 
 exports.oneUniversity = async (req, res) => {
   const name  = req.params.name;
@@ -52,3 +59,4 @@ try {
 
 
 }
+
