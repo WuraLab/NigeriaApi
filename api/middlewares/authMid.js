@@ -11,13 +11,13 @@ const validateUserToken = async (req, res, next) => {
   }
   try {
     const decoded = jwt.decode(token);
-    const response = await Users.findOne(({ where: { email: decoded.email } }));
+    const response = await Users.findOne(({ attributes: ["email", "activated"] , where: { email: decoded.email } }));
 
     if (!response) {
       return res.status(403).end();
     }
     if (response.activated === false) {
-      return res.status(403).json({ response: "your account is activated yet, please activate your account" });
+      return res.status(403).json({ response: "your account is not activated yet, please activate your account" });
     }
     req.user = response;
     next();
