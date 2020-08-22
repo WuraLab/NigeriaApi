@@ -1,6 +1,8 @@
 /* eslint-disable consistent-return */
 const jwt = require("jsonwebtoken");
 const db = require("../models/index");
+const { generateApikey, confirmApikey } = require("../helpers/generateApikey")
+
 
 const { Users } = db;
 
@@ -10,8 +12,9 @@ const validateUserToken = async (req, res, next) => {
     return res.status(403).json({ response: "please provide token" });
   }
   try {
-    const decoded = jwt.decode(token);
-    const response = await Users.findOne(({ attributes: ["email", "activated"] , where: { email: decoded.email } }));
+    // const decoded = jwt.decode(token);
+    const decoded = confirmApikey(token);
+    const response = await Users.findOne(({ attributes: ["email", "activated"] , where: { email: decoded } }));
 
     if (!response) {
       return res.status(403).end();
