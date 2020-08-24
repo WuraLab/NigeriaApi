@@ -1,5 +1,6 @@
 node_modules
 .env
+.vscode
 .gitignore
 keep
 SELECT * FROM "users" LIMIT 1000;.pgsql
