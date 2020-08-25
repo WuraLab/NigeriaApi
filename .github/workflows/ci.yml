@@ -29,5 +29,4 @@ jobs:
         heroku_app_name: ${{ secrets.HEROKU_APP_NAME }}
         heroku_email: ${{ secrets.HEROKU_EMAIL }}
         branch: "master"
-        procfile: "web: npm start"
         healthcheck: "https://nigeria-api-backend.herokuapp.com/health"
