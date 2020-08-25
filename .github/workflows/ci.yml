@@ -22,4 +22,11 @@ jobs:
     - name: npm install and test
       run: |
           npm install
-  
+    - name: Login to Heroku and deploy
+      uses: akhileshns/heroku-deploy@v3.4.6
+      with:
+        heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
+        heroku_app_name: ${{ secrets.HEROKU_APP_NAME }}
+        heroku_email: ${{ secrets.HEROKU_EMAIL }}
+        branch: "master"
+        healthcheck: "https://nigeria-api-backend.herokuapp.com/health"
