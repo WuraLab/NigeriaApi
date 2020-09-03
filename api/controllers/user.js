@@ -78,6 +78,7 @@ exports.validate = async (req, res) => {
 
     // generate the user apikey
     const userApikey = generateApikey(existingUser.email);
+
     if (!userApikey) { return res.status(401).json({ response: 'there was an issue genrating your APIKEY' }) }
     // generateMailForSignup is  a function that returns an html file
     const options = {
@@ -89,6 +90,7 @@ exports.validate = async (req, res) => {
 
     // function to send the mail
     await mailer(options);
+
 
     // return a succesfully page saying account has been activated
     return res.status(200).send(`hello ${associatedmail} you account is now fully activated, and your apikey is ${userApikey} explore the NigeriaAPi`);
