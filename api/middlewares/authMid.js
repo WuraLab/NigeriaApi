@@ -15,12 +15,7 @@ const validateUserToken = async (req, res, next) => {
     // const decoded = jwt.decode(token);
     const decoded = confirmApikey(token);
     const response = await Users.findOne(({ attributes: ["email", "activated"] , where: { email: decoded } }));
-
-    if(decoded == null) {
-      return res.status(404).json({ response: "please check that you are using the correct apikey" });
-    }
-
-
+   
     if (!response) {
       return res.status(403).end();
     }

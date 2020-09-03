@@ -7,8 +7,12 @@ const algorithm = 'aes-192-cbc'
 const password = `${JWTSECRET}`;
 // Use the async `crypto.scrypt()` instead.
 const key = crypto.scryptSync(password, 'salt', 24);
+
+
+
 // The IV is usually passed along with the ciphertext.
 const iv = Buffer.alloc(16, 0); // Initialization vector.
+
 
 
 const confirmApikey = (encrypted) => {
@@ -20,6 +24,8 @@ const confirmApikey = (encrypted) => {
 
 }
 
+// this is the function that generate the APIK
+
 const generateApikey = (data) => {
     const cipher = crypto.createCipheriv(algorithm, key, iv);
     let encrypted = cipher.update(data, 'utf8', 'hex');
@@ -27,8 +33,5 @@ const generateApikey = (data) => {
     console.log(encrypted);
     return encrypted;
 }
-
-// let gen = generateApikey('damilola@gmail.com');
-// confirmApikey(gen);
 
 module.exports = { confirmApikey, generateApikey }

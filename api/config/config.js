@@ -12,12 +12,6 @@ const {
   DEV_DB_URI
 } = process.env;
 
-// DEV_DATABASE_NAME= 'db74jvlfa32vit'
-// DEV_DATABASE_USER= trxbthfngzrayf 
-// DEV_DATABASE_PASSWORD= 23054ed29fc3e310ae2000c0be157d980dda0a95af17e5c18a936a46f8c4fb1d 
-// DEV_DATABASE_HOST= ec2-50-16-198-4.compute-1.amazonaws.com
-// DEV_DATABASE_PORT='5432'
-
 module.exports = {
   development: {
     username: DEV_DATABASE_USER,
