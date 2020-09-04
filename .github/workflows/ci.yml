@@ -24,8 +24,6 @@ jobs:
           npm install
     - name: Login to Heroku and deploy
       uses: akhileshns/heroku-deploy@v3.4.6
-      - run: git config --global user.email "adefemi171@gmail.com"
-      - run: git config --global user.name "adefemi171"
       with:
         heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
         heroku_app_name: ${{ secrets.HEROKU_APP_NAME }}
