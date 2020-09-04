@@ -99,8 +99,7 @@ exports.validate = async (req, res) => {
 
 exports.login = async (req, res) => {
   // get the login credentials
-  try {
-    const { email, password } = req.body;
+  try {const { email, password } = req.body;
 
   // check if email and password exist
   const checkMail = await Users.findOne({where: { email }});
