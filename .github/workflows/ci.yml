@@ -22,4 +22,13 @@ jobs:
     - name: npm install and test
       run: |
           npm install
-  
+    - run: git config --global user.name "adefemi171" && git config --global user.email "adefemi171@gmail.com"
+    - name: Login to Heroku and deploy
+      uses: akhileshns/heroku-deploy@v3.4.6
+      with:
+        heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
+        heroku_app_name: ${{ secrets.HEROKU_APP_NAME }}
+        heroku_email: ${{ secrets.HEROKU_EMAIL }}
+        branch: "feature-user-login"
+        procfile: "web: npm start"
+        healthcheck: "https://nigeria-api-backend.herokuapp.com/health"
