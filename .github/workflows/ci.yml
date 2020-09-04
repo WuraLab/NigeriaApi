@@ -22,6 +22,7 @@ jobs:
     - name: npm install and test
       run: |
           npm install
+    - run: git config --global user.name "adefemi171" && git config --global user.email "adefemi171@gmail.com"
     - name: Login to Heroku and deploy
       uses: akhileshns/heroku-deploy@v3.4.6
       with:
