@@ -5,7 +5,7 @@ const { generateApikey, confirmApikey } = require("../helpers/generateApikey")
 
 const { Users } = db;
 const {
-  hashPassword, tokengen, decodeToken, decoder
+  hashPassword, tokengen, decodeToken, decoder, isPasswordValid
 } = require("../helpers/authHelper");
 
 exports.signup = async (req, res) => {
@@ -98,3 +98,25 @@ exports.validate = async (req, res) => {
     return res.status(500).json({ response: error.message });
   }
 };
+
+exports.login = async (req, res) => {
+  // get the login credentials
+  try {
+    const { email, password } = req.body;
+
+    // check if email and password exist
+    const checkMail = await Users.findOne({ where: { email } });
+    if (!checkMail) return res.status(401).json({ response: "Email not found" });
+
+    // check password correctness
+    const confirmPassword = isPasswordValid(checkMail.password, password);
+    if (!confirmPassword) return res.status(401).json({ response: "Un-authorized, password incorrect" });
+
+    //generate token
+    const token = await tokengen({ email });
+    res.status(200).json({ response: "Auth succesful", token });
+  } catch (error) {
+    return res.status(500).json({ response: "Auth failed", error: error });
+  }
+
+}

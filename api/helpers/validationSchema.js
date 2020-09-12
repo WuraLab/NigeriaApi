@@ -10,4 +10,8 @@ const userSchema = Joi.object().keys({
   confirmPassword: Joi.ref("password")
 });
 
-module.exports = userSchema;
+const userLoginSchema = Joi.object().keys({
+  email: Joi.string().email({ minDomainSegments: 2 }).label("email").required(),
+});
+
+module.exports = { userSchema, userLoginSchema };

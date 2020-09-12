@@ -3,7 +3,7 @@ const {
   Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class University_data extends Model {
+  class university_data extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -13,22 +13,22 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
     }
   };
-  University_data.init({
+  university_data.init({
     Name: DataTypes.STRING,
     State: DataTypes.STRING,
     Abbrevation: DataTypes.STRING,
     Location: DataTypes.STRING,
     Type: DataTypes.STRING,
     Founded: DataTypes.STRING,
-    Number_of_students: DataTypes.STRING,
-    Chancellor: DataTypes.STRING,
-    Pro_chancellor: DataTypes.STRING,
-    Vice_chancellor: DataTypes.STRING,
+    Number_of_Students: DataTypes.STRING,
+    // Chancellor: DataTypes.STRING,
+    // Pro_chancellor: DataTypes.STRING,
+    // Vice_chancellor: DataTypes.STRING,
     URl: DataTypes.STRING,
     Social_media_handle_URL: DataTypes.STRING,
-    Number_of_faculties: DataTypes.STRING,
+    Number_of_Faculties: DataTypes.STRING,
     Motto: DataTypes.STRING,
-    Programme_offered: DataTypes.STRING,
+    Programme_Offered: DataTypes.STRING,
     Religious_Affiliation: DataTypes.STRING,
     Memberships_and_Affiliations: DataTypes.STRING,
     Wikipedia_Article: DataTypes.STRING,
@@ -53,7 +53,7 @@ module.exports = (sequelize, DataTypes) => {
     Colours: DataTypes.STRING
   }, {
     sequelize,
-    modelName: 'University_data',
+    modelName: 'university_data',
   });
-  return University_data;
+  return university_data;
 };

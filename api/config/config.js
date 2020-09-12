@@ -31,6 +31,7 @@ module.exports = {
     // logging: false
   },
   test: {
+    
     username: LOCAL_DATABASE_USER,
     password: LOCAL_DATABASE_PASSWORD,
     database: LOCAL_DATABASE_NAME,
