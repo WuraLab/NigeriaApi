@@ -84,7 +84,7 @@ exports.validate = async (req, res) => {
     }
 
 
-    if (!userApikey) { return res.status(401).json({ response: 'there was an issue genrating your APIKEY' }) }
+    if (!userApikey) { return res.status(400).json({ response: 'there was an issue genrating your APIKEY' }) }
     // generateMailForSignup is  a function that returns an html file
     const options = {
       receiver: existingUser.email,
