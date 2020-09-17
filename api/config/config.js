@@ -28,7 +28,7 @@ module.exports = {
       keepAlive: true
     },
     ssl: true,
-    // logging: false
+    logging: false
   },
   test: {
     

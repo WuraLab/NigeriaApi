@@ -3,7 +3,7 @@ const mailer = require("../helpers/mailer");
 const { generateMailForSignup } = require("./email/helper");
 const { generateApikey, confirmApikey } = require("../helpers/generateApikey")
 
-const { Users } = db;
+const { users } = db;
 const {
   hashPassword, tokengen, decodeToken, decoder, isPasswordValid
 } = require("../helpers/authHelper");
@@ -22,7 +22,7 @@ exports.signup = async (req, res) => {
     }
     // check if user exist in Db
 
-    const existingUser = await Users.findOne(({ where: { email } }));
+    const existingUser = await users.findOne(({ where: { email } }));
 
     if (existingUser) {
       return res.status(400).json({ response: "User with this email already exist" });
@@ -31,7 +31,7 @@ exports.signup = async (req, res) => {
     const hash = await hashPassword(confirmPassword);
     const token = await tokengen({ email });
     // create userdetails to Database
-    const createdUser = await Users.create({
+    const createdUser = await users.create({
       email, username, password: hash
     });
 
@@ -68,12 +68,12 @@ exports.validate = async (req, res) => {
       return res.status(404).json({ response: "There is user with this token, please make sure you are clicking the correct link" });
     }
     // find the user with that token
-    const existingUser = await Users.findOne(({ where: { email: associatedmail } }));
+    const existingUser = await users.findOne(({ where: { email: associatedmail } }));
 
     // if user users exist update the users data to activate true
     if (existingUser) {
       const getemail = existingUser.email;
-      await Users.update({ activated: true }, { where: { email: getemail } });
+      await users.update({ activated: true }, { where: { email: getemail } });
     }
 
     // generate the user apikey
@@ -105,7 +105,7 @@ exports.login = async (req, res) => {
     const { email, password } = req.body;
 
     // check if email and password exist
-    const checkMail = await Users.findOne({ where: { email } });
+    const checkMail = await users.findOne({ where: { email } });
     if (!checkMail) return res.status(401).json({ response: "Email not found" });
 
     // check password correctness
