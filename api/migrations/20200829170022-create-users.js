@@ -1,7 +1,10 @@
 'use strict';
+
+const { sequelize } = require("../models");
+
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('Users', {
+    await queryInterface.createTable('users', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -29,6 +32,15 @@ module.exports = {
         type: Sequelize.DATE
       }
     });
+  },
+  up: async (queryInterface, Sequelize) => {
+   await queryInterface.addColumn('users', 
+    "apikey",
+     {
+      type: Sequelize.STRING,
+      allowNull: true
+    }
+   );
   },
   down: async (queryInterface, Sequelize) => {
     await queryInterface.dropTable('Users');

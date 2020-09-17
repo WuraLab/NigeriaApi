@@ -27,6 +27,10 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false
     },
+    apikey: {
+      type: DataTypes.STRING,
+      allowNull: true
+    },
     activated: {
       type: DataTypes.BOOLEAN,
       allowNull: false,

@@ -78,6 +78,11 @@ exports.validate = async (req, res) => {
 
     // generate the user apikey
     const userApikey = generateApikey(existingUser.email);
+    if (userApikey) {
+      const getemail = existingUser.email;
+      await users.update({ apikey: userApikey }, { where: { email: getemail } });
+    }
+
 
     if (!userApikey) { return res.status(401).json({ response: 'there was an issue genrating your APIKEY' }) }
     // generateMailForSignup is  a function that returns an html file
@@ -116,7 +121,26 @@ exports.login = async (req, res) => {
     const token = await tokengen({ email });
     res.status(200).json({ response: "Auth succesful", token });
   } catch (error) {
-    return res.status(500).json({ response: "Auth failed", error: error });
+    return res.status(500).json({ response: "Auth failed", error });
+  }
+
+}
+
+exports.generateApikey = async (req, res) => {
+  try {
+    // get the email from the logged in user from the token
+    const { email } = req.user;
+    // check if logged in user details is in the DB
+    const user = await users.findOne({ where: { email } });
+    if (!user) {
+      return res.status(404).json({ response: "User not found" });
+    }
+    // get the user stored apikey from the user details
+    const getapikey = user.apikey;
+
+    return res.status(200).json({ response: "Apikey generated succesfully", apikey: getapikey });
+  } catch (error) {
+    return res.status(500).json({ response: "Unable to genearate key", error });
   }
 
 }
