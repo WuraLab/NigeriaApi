@@ -7,7 +7,7 @@ const query = require("../helpers/query");
 exports.allUniversity = async (req, res) => {
   const { limit } = req.query;
   if (!req.user || req.user === undefined) {
-    return res.status(403).json({ response: "you dont have access to this endpoint" });
+    return res.status(401).json({ response: "you dont have access to this endpoint" });
   }
 
   const dbQuery = query(req.query);
@@ -42,7 +42,7 @@ exports.oneUniversity = async (req, res) => {
 try {
   
   if (!req.user || req.user === undefined) {
-    return res.status(403).json({ response: "you dont have access to this endpoint" });
+    return res.status(401).json({ response: "you dont have access to this endpoint" });
   }
 
   const response = await university_data.findOne({ attributes: { exclude: ["createdAt", "updatedAt"] }, 
