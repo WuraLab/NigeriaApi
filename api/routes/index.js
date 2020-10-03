@@ -6,7 +6,7 @@ const { signup, validate, login, generateApikey } = require("../controllers/user
 const { allUniversity, oneUniversity } = require("../controllers/university");
 const { validateUserToken, checkAuth } = require("../middlewares/authMid");
 const { userLoginSchema, userSchema } = require("../helpers/validationSchema");
-const { allPolytechnic } = require("../controllers/polytechnic");
+const { allPolytechnic, onePolytechnic } = require("../controllers/polytechnic");
 
 // USERS RELATED ENDPOINTS
 router.post("/users/", validator(userSchema), signup);
@@ -20,7 +20,7 @@ router.get("/university/:name", validateUserToken, oneUniversity);
 
 // POLYTECHNIC RELATED ENDPOINT
 router.get("/polytechnic", validateUserToken, allPolytechnic);
-// router.get("/polytechnic/:name", onePolytechnic);
+router.get("/polytechnic/:name", validateUserToken, onePolytechnic);
 
 
 // export the router to be able to use in other files

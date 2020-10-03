@@ -29,3 +29,23 @@ exports.allPolytechnic = async (req, res) => {
         return res.status(500).json({ response: `internal server error ${error}` });
     }
 };
+
+exports.onePolytechnic = async (req, res) => {
+    const name = req.params.name;
+    try {
+        if (!req.user || req.user === undefined) return res.status(401).json({ response: "you dont have access to this endpoint" });
+        const response = await polytechnic_data.findOne({
+            attributes: { exclude: ["createdAt", "updatedAt"] },
+            where: {
+                Name: name
+            }
+        })
+        if (response === null || response.length < 1) {
+            return res.status(404).json({ response: "data not found, probably we dont have the requested university data" })
+        }
+        return res.status(200).json({ response });
+    } catch (error) {
+        return res.status(500).json({ response: `${error} occured` })
+
+    }
+}
