@@ -3,7 +3,7 @@ const express = require("express");
 const router = express.Router();
 const validator = require("../middlewares/validationMid");
 const { signup, validate, login, generateApikey } = require("../controllers/user");
-const { allUniversity, oneUniversity, updataUniversity } = require("../controllers/university");
+const { allUniversity, oneUniversity, updateUniversity, postUniversity, deleteUniversity } = require("../controllers/university");
 const { validateUserToken, checkAuth } = require("../middlewares/authMid");
 const { userLoginSchema, userSchema } = require("../helpers/validationSchema");
 const { allPolytechnic, onePolytechnic } = require("../controllers/polytechnic");
@@ -23,7 +23,12 @@ router.get("/polytechnic", validateUserToken, allPolytechnic);
 router.get("/polytechnic/:name", validateUserToken, onePolytechnic);
 
 // ADMINISTARTIVE ROUTES
-router.post("/universities/:id", updataUniversity);
+router.route("/universities/:id")
+    // .get()
+    .delete(deleteUniversity)
+    .patch(updateUniversity)
+
+router.post("/universities", postUniversity);
 
 
 // export the router to be able to use in other files
