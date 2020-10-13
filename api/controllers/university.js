@@ -3,6 +3,7 @@ const db = require("../models/index");
 const { Op } = require("sequelize")
 const { university_data } = db;
 const query = require("../helpers/query");
+// const universityData = require("../utils/utils");
 
 exports.allUniversity = async (req, res) => {
   const { limit } = req.query;
@@ -62,25 +63,151 @@ exports.oneUniversity = async (req, res) => {
 
 }
 
-exports.updataUniversity = async (req, res) => {
+exports.updateUniversity = async (req, res) => {
   const id = req.params.id;
-
+  console.log(universityData, id)
   try {
     const update = await university_data.update(
-      { Abbrevation: req.body.Abbrevation,
-        Number_of_Students: req.body.no_of_student,
-        Number_of_Faculties: req.body.no_of_faculty
+      {
+        Name: req.body.Name,
+        State: req.body.State,
+        Location: req.body.Location,
+        Type: req.body.Type,
+        Founded: req.body.Founded,
+        URl: req.body.URl,
+        Social_media_handle_URL: req.body.Social_media_handle_URL,
+        Motto: req.body.Motto,
+        Abbrevation: req.body.Abbrevation,
+        Academic_Calendar: req.body.Academic_Calendar,
+        Academic_Staff: req.body.Academic_Staff,
+        Accreditations: req.body.Accreditations,
+        Admission_Rate: req.body.Admission_Rate,
+        Campus_Setting: req.body.Campus_Setting,
+        Colours: req.body.Colours,
+        Distance_Learning: req.body.Distance_Learning,
+        Entity_Type: req.body.Entity_Type,
+        Faculty_or_Colleges: req.body.Faculty_or_Colleges,
+        Financial_Aids: req.body.Financial_Aids,
+        Gender: req.body.Gender,
+        Housing: req.body.Housing,
+        International_Students: req.body.International_Students,
+        Library: req.body.Library,
+        Number_of_Students: req.body.Number_of_Students,
+        Number_of_Faculties: req.body.Number_of_Faculties,
+        Programme_Offered: req.body.Programme_Offered,
+        Region: req.body.Region,
+        Selection_Type: req.body.Selection_Type,
+        Sport_Facilities: req.body.Sport_Facilities,
+        Study_Abroad: req.body.Study_Abroad,
+        University_Overview: req.body.University_Overview,
+        Wikipedia_Article: req.body.Wikipedia_Article,
+        Memberships_and_Affiliations: req.body.Members_and_Affiliations,
+        Religious_Affiliation: req.body.Religious_Affiliation
+
       },
-      { where: { id: id },
-      returning: true
-     },
+      {
+        where: { id: id },
+        returning: true
+      },
     )
-      console.log(update)
-    return res.status(200).json({ 
-      response: "data updated successfully", 
-     update 
-  })
+    console.log(update)
+    return res.status(200).json({
+      response: "data updated successfully",
+      update
+    })
   } catch (error) {
     return res.status(500).json({ response: `${error} occured` });
   }
 }
+
+exports.postUniversity = async (req, res) => {
+  try {
+    const payload = {
+      Name: req.body.Name,
+      State: req.body.State,
+      Location: req.body.Location,
+      Type: req.body.Type,
+      Founded: req.body.Founded,
+      URl: req.body.URl,
+      Social_media_handle_URL: req.body.Social_media_handle_URL,
+      Motto: req.body.Motto,
+      Abbrevation: req.body.Abbrevation,
+      Academic_Calendar: req.body.Academic_Calendar,
+      Academic_Staff: req.body.Academic_Staff,
+      Accreditations: req.body.Accreditations,
+      Admission_Rate: req.body.Admission_Rate,
+      Campus_Setting: req.body.Campus_Setting,
+      Colours: req.body.Colours,
+      Distance_Learning: req.body.Distance_Learning,
+      Entity_Type: req.body.Entity_Type,
+      Faculty_or_Colleges: req.body.Faculty_or_Colleges,
+      Financial_Aids: req.body.Financial_Aids,
+      Gender: req.body.Gender,
+      Housing: req.body.Housing,
+      International_Students: req.body.International_Students,
+      Library: req.body.Library,
+      Number_of_Students: req.body.Number_of_Students,
+      Number_of_Faculties: req.body.Number_of_Faculties,
+      Programme_Offered: req.body.Programme_Offered,
+      Region: req.body.Region,
+      Selection_Type: req.body.Selection_Type,
+      Sport_Facilities: req.body.Sport_Facilities,
+      Study_Abroad: req.body.Study_Abroad,
+      University_Overview: req.body.University_Overview,
+      Wikipedia_Article: req.body.Wikipedia_Article,
+      Memberships_and_Affiliations: req.body.Members_and_Affiliations,
+      Religious_Affiliation: req.body.Religious_Affiliation
+    };
+
+    const createUni = await university_data.create(payload);
+    if (createUni) {
+      return res.status(201).json({ response: "New university Data saved", createUni });
+    }
+    return res.status(403).json({ response: "Unable to save university data, please try again" });
+
+  } catch (error) {
+    return res.status(500).json({ response: `${error} occured` })
+  }
+}
+
+exports.deleteUniversity = async (req, res) => {
+  const id = req.params.id;
+  try {
+    const deleteDoc = await university_data.destroy({ where: { id: id } });
+    if (deleteDoc) return res.status(200).json({ response: "university deteled", count: deleteDoc });
+    return res.status(204).json({ response: "It looks like this data no longer exist or has been moved" });
+
+  } catch (error) {
+    return res.status(500).json({ response: `${error} occured` })
+  }
+}
+
+exports.getAllUniversity = async (req, res) => {
+  const { limit } = req.query;
+  // if (!req.user || req.user === undefined) {
+  //   return res.status(401).json({ response: "you dont have access to this endpoint" });
+  // }
+
+  const dbQuery = query(req.query);
+
+  try {
+    let response;
+    // check for all the query parameter here and run each one by one
+    if (req.query) {
+      response = await university_data.findAll({
+        limit,
+        attributes: {
+          exclude: ["createdAt", "updatedAt"]
+        },
+        where: dbQuery
+      });
+    } else {
+      response = await university_data.findAll({ limit, attributes: { exclude: ["createdAt", "updatedAt"] } });
+    }
+    return res.status(200).json({ length: response.length, response: response });
+  } catch (error) {
+    return res.status(500).json({ response: `internal server error ${error}` })
+
+  }
+
+};
