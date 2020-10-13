@@ -56,9 +56,31 @@ exports.oneUniversity = async (req, res) => {
     }
     return res.status(200).json({ response });
   } catch (error) {
-    return res.status(500).json({ response: `${error} occured` })
+    return res.status(500).json({ response: `${error} occured` });
   }
 
 
 }
 
+exports.updataUniversity = async (req, res) => {
+  const id = req.params.id;
+
+  try {
+    const update = await university_data.update(
+      { Abbrevation: req.body.Abbrevation,
+        Number_of_Students: req.body.no_of_student,
+        Number_of_Faculties: req.body.no_of_faculty
+      },
+      { where: { id: id },
+      returning: true
+     },
+    )
+      console.log(update)
+    return res.status(200).json({ 
+      response: "data updated successfully", 
+     update 
+  })
+  } catch (error) {
+    return res.status(500).json({ response: `${error} occured` });
+  }
+}
