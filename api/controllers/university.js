@@ -65,7 +65,9 @@ exports.oneUniversity = async (req, res) => {
 
 exports.updateUniversity = async (req, res) => {
   const id = req.params.id;
-  console.log(universityData, id)
+  if (!req.user || req.user === undefined) {
+    return res.status(401).json({ response: "you dont have access to this endpoint" });
+  }
   try {
     const update = await university_data.update(
       {
@@ -121,6 +123,9 @@ exports.updateUniversity = async (req, res) => {
 }
 
 exports.postUniversity = async (req, res) => {
+  if (!req.user || req.user === undefined) {
+    return res.status(401).json({ response: "you dont have access to this endpoint" });
+  }
   try {
     const payload = {
       Name: req.body.Name,
@@ -172,6 +177,9 @@ exports.postUniversity = async (req, res) => {
 
 exports.deleteUniversity = async (req, res) => {
   const id = req.params.id;
+  if (!req.user || req.user === undefined) {
+    return res.status(401).json({ response: "you dont have access to this endpoint" });
+  }
   try {
     const deleteDoc = await university_data.destroy({ where: { id: id } });
     if (deleteDoc) return res.status(200).json({ response: "university deteled", count: deleteDoc });
@@ -184,9 +192,9 @@ exports.deleteUniversity = async (req, res) => {
 
 exports.getAllUniversity = async (req, res) => {
   const { limit } = req.query;
-  // if (!req.user || req.user === undefined) {
-  //   return res.status(401).json({ response: "you dont have access to this endpoint" });
-  // }
+  if (!req.user || req.user === undefined) {
+    return res.status(401).json({ response: "you dont have access to this endpoint" });
+  }
 
   const dbQuery = query(req.query);
 
