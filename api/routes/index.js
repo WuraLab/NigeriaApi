@@ -4,7 +4,7 @@ const router = express.Router();
 const validator = require("../middlewares/validationMid");
 const { signup, validate, login, generateApikey } = require("../controllers/user");
 const { allUniversity, oneUniversity, updateUniversity, postUniversity, deleteUniversity } = require("../controllers/university");
-const { validateUserToken, checkAuth } = require("../middlewares/authMid");
+const { validateUserToken, checkAuth, checkAuthAdmin } = require("../middlewares/authMid");
 const { userLoginSchema, userSchema } = require("../helpers/validationSchema");
 const { allPolytechnic, onePolytechnic } = require("../controllers/polytechnic");
 
@@ -24,7 +24,7 @@ router.get("/polytechnic/:name", validateUserToken, onePolytechnic);
 
 // ADMINISTARTIVE ROUTES
 router.route("/universities/:id")
-    // .get()
+    .all(checkAuthAdmin)
     .delete(deleteUniversity)
     .patch(updateUniversity)
 

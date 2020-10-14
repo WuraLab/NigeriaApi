@@ -3,7 +3,6 @@ const db = require("../models/index");
 const { Op } = require("sequelize")
 const { university_data } = db;
 const query = require("../helpers/query");
-const universityData = require("../utils/utils");
 
 exports.allUniversity = async (req, res) => {
   const { limit } = req.query;
@@ -65,7 +64,6 @@ exports.oneUniversity = async (req, res) => {
 
 exports.updateUniversity = async (req, res) => {
   const id = req.params.id;
-  console.log(universityData, id)
   try {
     const update = await university_data.update(
       {
