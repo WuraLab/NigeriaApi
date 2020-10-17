@@ -13,7 +13,7 @@ exports.signup = async (req, res) => {
   // the password should be atleast, contain atleast one number,
   //  it only accept this symbols !@#$%^&*;
   const {
-    username, email, password, confirmPassword
+    username, email, password, confirmPassword, role
   } = req.body;
   try {
     // checks if password and confirmPasword match
@@ -31,8 +31,9 @@ exports.signup = async (req, res) => {
     const hash = await hashPassword(confirmPassword);
     const token = await tokengen({ email });
     // create userdetails to Database
+    // const role = "USER"
     const createdUser = await users.create({
-      email, username, password: hash
+      email, username, password: hash, role
     });
 
     const validationLink = `${process.env.BASE_URL}/validate/users/?token=${token}`;

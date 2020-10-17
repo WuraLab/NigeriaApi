@@ -31,6 +31,10 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: true
     },
+    role: {
+      type: DataTypes.STRING,
+      allowNull: true
+    },
     activated: {
       type: DataTypes.BOOLEAN,
       allowNull: false,
@@ -38,7 +42,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   }, {
     sequelize,
-    timestamps: false,
+    // timestamps: false,
     modelName: "users"
   });
   return users;
