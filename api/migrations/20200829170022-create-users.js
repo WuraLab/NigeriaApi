@@ -27,6 +27,10 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DATE
       },
+      apikey: {
+        allowNull: false,
+        type: Sequelize.STRING
+      },
       updatedAt: {
         allowNull: false,
         type: Sequelize.DATE
@@ -34,15 +38,25 @@ module.exports = {
     });
   },
   up: async (queryInterface, Sequelize) => {
-   await queryInterface.addColumn('users', 
-    "apikey",
-     {
-      type: Sequelize.STRING,
-      allowNull: true
-    }
-   );
+    queryInterface.addColumn(
+      'users',
+      'role',
+      {
+        type: Sequelize.STRING,
+        allowNull: false
+      }
+    )
   },
+  // up: async (queryInterface, Sequelize) => {
+  //  await queryInterface.addColumn('users', 
+  //   "apikey",
+  //    {
+  //     type: Sequelize.STRING,
+  //     allowNull: true
+  //   }
+  //  );
+  // },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('Users');
+    await queryInterface.dropTable('users');
   }
 };

@@ -53,4 +53,31 @@ const checkAuth = async (req, res, next) => {
   }
 }
 
-module.exports = { validateUserToken, checkAuth };
+const checkAuthAdmin = async (req, res, next) => {
+  const stringToken = req.headers.authorization;
+  if (!stringToken || !stringToken.startsWith("Bearer")) {
+    return res.status(403).json({ response: "A token is required in the header" });
+  }
+  const tokenArray = stringToken.split(" ");
+  if (!tokenArray || tokenArray.length !== 2) return res.status(403).json({ response: "" });
+  const token = tokenArray[1];
+  try {
+    const data = decodeToken(token);
+    const user = await users.findOne({ attributes: ["email", "role"], where: { email: data.email } });
+    if (!user ) {
+      return res.status(401).json({
+        response: "Authentication failed"
+      });
+    }
+    if (user.role != "ADMIN") {
+      return res.status(401).json({
+        response: "Un-Authorization user"
+      });
+    }
+    req.user = user;
+    next();
+  } catch (error) {
+    return res.status(500).json({ response: error });
+  }
+}
+module.exports = { validateUserToken, checkAuth, checkAuthAdmin };
