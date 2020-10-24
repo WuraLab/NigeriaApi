@@ -159,7 +159,7 @@ exports.postUniversity = async (req, res) => {
       Study_Abroad: req.body.Study_Abroad,
       University_Overview: req.body.University_Overview,
       Wikipedia_Article: req.body.Wikipedia_Article,
-      Memberships_and_Affiliations: req.body.Members_and_Affiliations,
+      Memberships_and_Affiliations: req.body.Memberships_and_Affiliations,
       Religious_Affiliation: req.body.Religious_Affiliation
     };
 
@@ -181,7 +181,7 @@ exports.deleteUniversity = async (req, res) => {
   }
   try {
     const deleteDoc = await university_data.destroy({ where: { id: id } });
-    if (deleteDoc) return res.status(200).json({ response: "university deteled", count: deleteDoc });
+    if (deleteDoc) return res.status(200).json({ response: "university deleted", count: deleteDoc });
     return res.status(204).json({ response: "It looks like this data no longer exist or has been moved" });
 
   } catch (error) {
