@@ -3,7 +3,7 @@ const express = require("express");
 const router = express.Router();
 const validator = require("../middlewares/validationMid");
 const { signup, validate, login, generateApikey } = require("../controllers/user");
-const { allUniversity, oneUniversity, updateUniversity, postUniversity, deleteUniversity, getAllUniversity } = require("../controllers/university");
+const { allUniversity, oneUniversity, updateUniversity, postUniversity, deleteUniversity, getAllUniversity, getOneUni } = require("../controllers/university");
 const { validateUserToken, checkAuth, checkAuthAdmin } = require("../middlewares/authMid");
 const { userLoginSchema, userSchema } = require("../helpers/validationSchema");
 const { allPolytechnic, onePolytechnic } = require("../controllers/polytechnic");
@@ -27,6 +27,7 @@ router.route("/universities/:id")
     .all(checkAuthAdmin)
     .delete(deleteUniversity)
     .patch(updateUniversity)
+    .get(getOneUni)
 
 router.route("/universities")
     .all(checkAuthAdmin)

@@ -68,6 +68,13 @@ exports.updateUniversity = async (req, res) => {
     return res.status(401).json({ response: "you dont have access to this endpoint" });
   }
   try {
+    const response = await university_data.findOne({
+      attributes: { exclude: ["createdAt", "updatedAt"] },
+      where: {
+        id: id
+      }
+    });
+    if (!response || response === null) return res.status(404).json({ response: "We couldnt find the university, it has been deleted or moved" })
     const update = await university_data.update(
       {
         Name: req.body.Name,
@@ -218,3 +225,27 @@ exports.getAllUniversity = async (req, res) => {
   }
 
 };
+
+exports.getOneUni = async (req, res) => {
+  const { id } = req.params;
+  try {
+
+    if (!req.user || req.user === undefined) {
+      return res.status(401).json({ response: "you dont have access to this endpoint" });
+    }
+
+    const response = await university_data.findOne({
+      attributes: { exclude: ["createdAt", "updatedAt"] },
+      where: {
+        id: id
+      }
+    })
+    console.log(response);
+    if (response == null || response.length < 1) {
+      return res.status(404).json({ response: "data not found, probably we dont have the requested university data" })
+    }
+    return res.status(200).json({ response });
+  } catch (error) {
+    return res.status(500).json({ response: `${error} occured` });
+  }
+}
