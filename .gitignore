@@ -8,3 +8,4 @@ SELECT * FROM "university_data" LIMIT 10.pgsql
 uniNigeriaAPI.csv
 universityname.json
 config/config.js
+/api/controllers/email/templates/signup.html
