@@ -227,7 +227,7 @@ exports.getAllUniversity = async (req, res) => {
 };
 
 exports.getOneUni = async (req, res) => {
-  const { id } = req.params;
+  const id  = req.params.id;
   try {
 
     if (!req.user || req.user === undefined) {
