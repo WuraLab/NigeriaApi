@@ -7,7 +7,8 @@ const userSchema = Joi.object().keys({
     .label("username")
     .required(),
   password: Joi.string().label("password").regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*;])(?=.{8,})/, "required password strength").required(),
-  confirmPassword: Joi.ref("password")
+  confirmPassword: Joi.ref("password"),
+  role: Joi.string().trim().required()
 });
 
 const userLoginSchema = Joi.object().keys({

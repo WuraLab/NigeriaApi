@@ -35,17 +35,14 @@ exports.signup = async (req, res) => {
     const createdUser = await users.create({
       email, username, password: hash, role
     });
-
     const validationLink = `${process.env.BASE_URL}/validate/users/?token=${token}`;
-
     // generateMailForSignup is  a function that returns an html file
     const options = {
       receiver: email,
-      subject: "NigeriaApi E-mail validation",
-      text: "validate your account",
-      output: generateMailForSignup(validationLink, email)
+      subject: "Nigeria API E-mail validation",
+      text: "Validate your account",
+      output: generateMailForSignup(validationLink, createdUser.username)
     };
-
     // function to send the mail
     await mailer(options);
     return res.status(201).json({ response: "SignUp successful, check your email for validation", createdUser, token });
