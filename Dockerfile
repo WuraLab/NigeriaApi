@@ -7,14 +7,11 @@ ADD . /nigeriaApi
 WORKDIR /nigeriaApi
 
 COPY . package*.json
-RUN adduser --disable-password nigeriaApi
-RUN chown -R nigeriaApi:nigeriaApi ./script/start.sh
-USER nigeriaApi
 
-RUN npm ci
+RUN npm i
 
 EXPOSE 3000
 
-CMD ./script/start.sh
+CMD ["npm", "start"]
 
 
