@@ -1,10 +1,25 @@
-# version: "3"
+version: '3'
+services:
+  nigeria-api:
+    container_name: nigeriaapi
+    build: .
+    ports:
+      - 3000:3000
+    environment:
+      POSTGRES_HOST: postgres:^3PBL>`'wRYFc4=uMXjVc>qK(6^Ec%@postgres:5432
+      PORT: 3000
+      
+    depends_on:
+      - postgres
+    links:
+      - postgres
 
-# services:
-#   app:
-#     build: .
-#     depends_on:
-#      - postgres
-#     ports:
-#       - "3000:3000"
-#       - "5432:5432"
+  postgres:
+    container_name: postgres
+    restart: always
+    image: postgres
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_PASSWORD: ^3PBL>`'wRYFc4=uMXjVc>qK(6^Ec%
+      POSTGRES_DB: NigeriaAPI
