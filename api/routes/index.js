@@ -15,6 +15,14 @@ router.post("/users/login", validator(userLoginSchema), login);
 router.get("/users/generateApikey", checkAuth, generateApikey);
 
 // UNIVERSIRY RELATED ENDPOINT
+/**
+ * @param {String} token - Users API TOKEN, without this, access wont be granted
+ * This for this line of code to work, two modules are required
+ * [Module validate user token]{@link module:../middlewares/authMid.validateUserToken}
+ * [all university controller]{@link module:../middlewares/authMid.validateUserToken}
+ * @requires module:../middlewares/authMid.validateUserToken
+ * @requires module:../controllers/university.allUniversity
+ */
 router.get("/university", validateUserToken, allUniversity);
 router.get("/university/:name", validateUserToken, oneUniversity);
 
