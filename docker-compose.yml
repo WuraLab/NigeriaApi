@@ -1,25 +1,25 @@
-version: '3'
+# docker-compose.yml
+version: "3"
 services:
-  nigeria-api:
-    container_name: nigeriaapi
+  app:
     build: .
-    ports:
-      - 3000:3000
-    environment:
-      POSTGRES_HOST: postgres:^3PBL>`'wRYFc4=uMXjVc>qK(6^Ec%@postgres:5432
-      PORT: 3000
-      
     depends_on:
       - postgres
-    links:
-      - postgres
+    environment:
+      DATABASE_URL: postgres://${DEV_DATABASE_USER}:${DEV_DATABASE_PASSWORD}@postgres:5432/${POSTGRES_DB}
+      PORT: 3000
+    ports:
+      - "3000:3000"
+    command: npm run dev
+    volumes:
+      - .:/app/
+      - /app/node_modules
 
   postgres:
-    container_name: postgres
-    restart: always
-    image: postgres
+    image: postgres:10.4
     ports:
-      - 5432:5432
+      - "35432:5432"
     environment:
-      POSTGRES_PASSWORD: ^3PBL>`'wRYFc4=uMXjVc>qK(6^Ec%
-      POSTGRES_DB: NigeriaAPI
+      POSTGRES_USER: ${DEV_DATABASE_USER}
+      POSTGRES_PASSWORD: ${DEV_DATABASE_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
