@@ -1,3 +1,8 @@
+/**
+ * this config folder contain our configurations for the project
+ * the configuration input and parameters are gotten from the dotenv file
+ * the dotenv file should be created in the root of the project directory.
+ */
 const {
   DEV_DATABASE_NAME,
   DEV_DATABASE_USER,
