@@ -4,6 +4,16 @@ const { Op } = require("sequelize")
 const { university_data } = db;
 const query = require("../helpers/query");
 
+/**
+ * This function queries the database for all universities data
+ * @param {object} req HTTP request argument to the middleware function.
+ * @param {object} res HTTP response argument to the middleware function.
+ * @param {object} return 401 code if user is not authenticated
+ * @param {object} return 200 success code and json file contain all polytechnic data
+ * @param {object} return 500 code if there is a server error
+ */
+
+
 exports.allUniversity = async (req, res) => {
   const { limit } = req.query;
   if (!req.user || req.user === undefined) {
@@ -34,6 +44,16 @@ exports.allUniversity = async (req, res) => {
 
 };
 
+/**
+ * This function queries the database for one university data
+ * @param {object} req HTTP request argument to the middleware function.
+ * @param {object} res HTTP response argument to the middleware function.
+ * @param {object} return 401 code if user is not authenticated
+ * @param {object} return 404 code if the returned data is less than one
+ * @param {object} return 200 success code and json file contain all polytechnic data
+ * @param {object} return 500 code if there is a server error
+ */
+
 
 exports.oneUniversity = async (req, res) => {
   const name = req.params.name;
@@ -61,7 +81,19 @@ exports.oneUniversity = async (req, res) => {
 
 
 }
-
+/**
+ * This function updates the university data in the database
+ * @param {object} req HTTP request argument to the middleware function.
+ * @param {object} res HTTP response argument to the middleware function.
+ * @param {string} id takes the id of the university to be updated
+ * @param {string} response find a university with the id of the university to be updated and return
+ * corresponding status code
+ * @param {object} update takes in object from the body of the request and update the university data.
+ * @param {object} return 401 code if user is not authenticated
+ * @param {object} return 404 code if the returned data is less than one
+ * @param {object} return 200 success code when a university is updated successfully
+ * @param {object} return 500 code if there is a server error
+ */
 exports.updateUniversity = async (req, res) => {
   const id = req.params.id;
   if (!req.user || req.user === undefined) {
@@ -128,6 +160,18 @@ exports.updateUniversity = async (req, res) => {
   }
 }
 
+/**
+ * This function enable a new university data to be posted into the database
+ * @param {object} req HTTP request argument to the middleware function.
+ * @param {object} res HTTP response argument to the middleware function.
+ * @param {object} payload takes the new university data from the body of the request
+ * @param {object} createUni persist the payload data to create a new university data into database
+ * @param {object} return 401 code if user is not authenticated
+ * @param {object} return 403 code if the access to the requested resource is forbidden
+ * @param {object} return 201 success code and json file when a a new university data is saved successfully
+ * @param {object} return 500 code if there is a server error
+ */
+
 exports.postUniversity = async (req, res) => {
   if (!req.user || req.user === undefined) {
     return res.status(401).json({ response: "you dont have access to this endpoint" });
@@ -181,6 +225,18 @@ exports.postUniversity = async (req, res) => {
   }
 }
 
+/**
+ * This function enable a university data to be deleted from the database
+ * @param {object} req HTTP request argument to the middleware function.
+ * @param {object} res HTTP response argument to the middleware function.
+ * @param {string} id takes the id of the university to be deleted
+ * @param {object} deleteDoc persist the data to be deleted from the database
+ * @param {object} return 401 code if user is not authenticated
+ * @param {object} return 200 success code when a university is successfully delete
+ * @param {object} return 204 if there is no data with the id specified
+ * @param {object} return 500 code if there is a server error
+ */
+
 exports.deleteUniversity = async (req, res) => {
   const id = req.params.id;
   if (!req.user || req.user === undefined) {
@@ -195,6 +251,17 @@ exports.deleteUniversity = async (req, res) => {
     return res.status(500).json({ response: `${error} occured` })
   }
 }
+
+/**
+ * This function enable a university data to be deleted from the database
+ * @param {object} req HTTP request argument to the middleware function.
+ * @param {object} res HTTP response argument to the middleware function.
+ * @param {object} response finds and return all universities data from the database
+ * @param {object} return 401 code if user is not authenticated
+ * @param {object} return 200 success code when a university is successfully del
+ * @param {object} return 204 if there is no data with the id specified
+ * @param {object} return 500 code if there is a server error
+ */
 
 exports.getAllUniversity = async (req, res) => {
   const { limit } = req.query;

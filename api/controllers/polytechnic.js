@@ -2,7 +2,14 @@ const db = require("../models/index");
 const { polytechnic_data } = db;
 const query = require("../helpers/query");
 
-
+/**
+ * This function queries the database for all polytechnic data
+ * @param {object} req HTTP request argument to the middleware function.
+ * @param {object} res HTTP response argument to the middleware function.
+ * @param {object} return 401 code if user is not authenticated
+ * @param {object} return 200 success code and json file contain all polytechnic data
+ * @param {object} return 500 code if there is a server error
+ */
 exports.allPolytechnic = async (req, res) => {
     const { limit } = req.query;
     if (!req.user || req.user === undefined) {
@@ -29,6 +36,16 @@ exports.allPolytechnic = async (req, res) => {
         return res.status(500).json({ response: `internal server error ${error}` });
     }
 };
+
+/**
+ * This function queries the database for one polytechnic data
+ * @param {object} req HTTP request argument to the middleware function.
+ * @param {object} res HTTP response argument to the middleware function.
+ * @param {object} return 401 code if user is not authenticated
+ * @param {object} return 404 code if the returned data is less than one
+ * @param {object} return 200 success code and json file contain all polytechnic data
+ * @param {object} return 500 code if there is a server error
+ */
 
 exports.onePolytechnic = async (req, res) => {
     const name = req.params.name;
