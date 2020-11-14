@@ -1,9 +1,4 @@
 // we are to use environmental variables here
-var user = 'user';
-var db_name = 'db';
-var password = 'password';
-var host = 'localhost:5432'
-var port = 5432;
 
 const {
   DEV_DATABASE_NAME,
@@ -21,11 +16,11 @@ const {
 
 module.exports = {
   development: {
-    username: user,
-    password: password,
-    database: db_name,
-    host: host,
-    port: port,
+    username: DEV_DATABASE_USER,
+    password: DEV_DATABASE_PASSWORD,
+    database: DEV_DATABASE_NAME,
+    host: DEV_DATABASE_HOST,
+    port: DEV_DATABASE_PORT,
     dialect: "postgres",
     dialectOptions: {
       ssl: {
