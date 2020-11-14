@@ -8,10 +8,8 @@ WORKDIR /nigeriaApi
 
 COPY . package*.json
 
-RUN npm i
+RUN npm install
 
 EXPOSE 3000
 
 CMD ["npm", "start"]
-
-
