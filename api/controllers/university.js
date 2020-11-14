@@ -253,13 +253,13 @@ exports.deleteUniversity = async (req, res) => {
 }
 
 /**
- * This function enable a university data to be deleted from the database
+ * This function enable all universities data to be queried and retrieved from the database
  * @param {object} req HTTP request argument to the middleware function.
  * @param {object} res HTTP response argument to the middleware function.
  * @param {object} response finds and return all universities data from the database
  * @param {object} return 401 code if user is not authenticated
- * @param {object} return 200 success code when a university is successfully del
- * @param {object} return 204 if there is no data with the id specified
+ * @param {object} return 200 success code when universities data is found
+
  * @param {object} return 500 code if there is a server error
  */
 
@@ -292,6 +292,17 @@ exports.getAllUniversity = async (req, res) => {
   }
 
 };
+
+/**
+ * This function enable on university data to be queried and retrieved from the database
+ * @param {object} req HTTP request argument to the middleware function.
+ * @param {object} res HTTP response argument to the middleware function.
+ * @param {string} id take the id of the university data you want to retrieve.cd
+ * @param {object} response finds and return all universities data from the database
+ * @param {object} return 404 code if no university data is found
+ * @param {object} return 200 success code when a university data is found
+ * @param {object} return 500 code if there is a server error
+ */
 
 exports.getOneUni = async (req, res) => {
   const id  = req.params.id;
