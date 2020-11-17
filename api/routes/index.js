@@ -1,5 +1,7 @@
 const express = require("express");
 
+
+
 const router = express.Router();
 const validator = require("../middlewares/validationMid");
 const { signup, validate, login, generateApikey } = require("../controllers/user");

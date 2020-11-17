@@ -3,6 +3,11 @@ const { polytechnic_data } = db;
 const query = require("../helpers/query");
 
 /**
+ * Polytechnic API Module
+ * @module polytechnic
+ */
+
+/**
  * This function queries the database for all polytechnic data
  * @param {object} req HTTP request argument to the middleware function.
  * @param {object} res HTTP response argument to the middleware function.
