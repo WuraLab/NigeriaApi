@@ -1,6 +1,7 @@
 # Nigerian API Application
 
-[Website](https://nigeria-api.netlify.app/) • [Docs]() • [Examples](#examples)
+
+[Website](https://nigeria-api.netlify.app/) • [Docs]() • [Example](#examples)
 ## Contents
 
 - [About](##About)
@@ -35,16 +36,16 @@ To make use of the API, There are two ways to set it up
  Let's start by setting up a database with some sample data. We'll use PostgreSQL and our example e-commerce dataset for this tutorial. You can download and import it by running the following commands.
 
 ```
-$ curl (github link od sql dump) > outpput.sql
+$ curl <https://github.com/WuraLab/NigeriaApi/blob/sqlDump/output.sql> > outpput.sql
 $ createdb <DBNAME>
 $ psql --dbname <DBNAME> -f output.sql
 ```
 For example,
 
 ```bash
-$ curl (github link od sql dump) > outpput.sql
-$ createdb nigeriaApiDB
-$ psql --dbname nigeriaApiDB -f output.sql
+$ curl <https://github.com/WuraLab/NigeriaApi/blob/sqlDump/output.sql> > outpput.sql
+$ createdb nigeriaapidb
+$ psql --dbname nigeriaapidb -f output.sql
 ```
 
 The project uses environment variables for configuration, which starts with DEV_DATABASE_. To configure the connection to our database, we need to specify the DB name, user, password, and host. In the root project folder create a file called ```.env``` and fill it with the content in the ```.env.example``` file:
@@ -122,12 +123,12 @@ JavaScript
 
 ## Community
 
-If you have any questions or need help send a DM on twitter to any of the amazing developers.
+If you have any questions or need help send a DM on  <a href="https://twitter.com/" alt="Twitter"><img src=""></a>to any of the amazing developers.
 
 - [Fawas](www.twitter.com/fawas_ola)
-- [Adefemi](www.twitter.com/daycrawller)
 - [Isreal](twitterlink)
 - [Suen](twitterlink)
+- [Adefemi](www.twitter.com/daycrawller)
 
 # Top-level directory layout
 
