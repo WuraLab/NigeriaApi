@@ -123,7 +123,7 @@ JavaScript
 
 ## Community
 
-If you have any questions or need help send a DM on  <a href="https://twitter.com/" alt="Twitter"><img src=""></a>to any of the amazing developers.
+If you have any questions or need help send a DM on  <a href="https://twitter.com/" alt="Twitter"><img src="https://raw.githubusercontent.com/WuraLab/NigeriaApi/sqlDump/readme/twitter-fill.svg"></a>to any of the amazing developers.
 
 - [Fawas](www.twitter.com/fawas_ola)
 - [Isreal](twitterlink)
