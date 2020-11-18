@@ -128,7 +128,7 @@ If you have any questions or need help send a DM on  <a href="https://twitter.co
 - [Fawas](https://www.twitter.com/fawas_ola)
 - [Isreal](https://twitter.com/Aminu_Israelb)
 - [Suen](https://twitter.com/Eazyjazz02)
-- [Adefemi](www.twitter.com/daycrawller)
+- [Adefemi](https://www.twitter.com/daycrawller)
 
 # Top-level directory layout
 
