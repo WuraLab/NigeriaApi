@@ -56,9 +56,9 @@ This method is suitable for anyone who wish to run the project locally without d
 
 To run this application locally on your PC, you should have the following installed
 
-1. [Node js](link to node js)
+1. [Node js](https://nodejs.org/en/)
 
-2. [PostgreSql](link to postgres)
+2. [PostgreSql](https://www.postgresql.org/)
 
 
 ### Fork the Repo
@@ -105,8 +105,8 @@ To test the application, open you browser and type this in the address bar
 ### Setting it using docker-compose
 The application can be run using docker also, you should the following installed
 
-1. [docker]()
-2. [docker compose]()
+1. [docker](https://www.docker.com/get-started)
+2. [docker compose](https://docs.docker.com/compose/install/)
 
 run ```docker-compose build .``` to build the docker file.
 run ```docker-compose up -d``` to run the application
@@ -125,9 +125,9 @@ JavaScript
 
 If you have any questions or need help send a DM on  <a href="https://twitter.com/" alt="Twitter"><img src="https://raw.githubusercontent.com/WuraLab/NigeriaApi/sqlDump/readme/twitter-fill.svg"></a>to any of the amazing developers.
 
-- [Fawas](www.twitter.com/fawas_ola)
-- [Isreal](twitterlink)
-- [Suen](twitterlink)
+- [Fawas](https://www.twitter.com/fawas_ola)
+- [Isreal](https://twitter.com/Aminu_Israelb)
+- [Suen](https://twitter.com/Eazyjazz02)
 - [Adefemi](www.twitter.com/daycrawller)
 
 # Top-level directory layout
