@@ -65,9 +65,9 @@ To run this application locally on your PC, you should have the following instal
 
 ### Clone the repository 
 
-    ```
-    git clone https://github.com/<username>/NigeriaApi.git
-    ```
+```
+git clone https://github.com/<username>/NigeriaApi.git
+```
 
 
 
@@ -75,28 +75,31 @@ To run this application locally on your PC, you should have the following instal
 
 Using npm
 
-    ```
-    npm install
-    ```
+```
+npm install
+```
 
 
 ### To start the App and run locally
 
 Using node
 
-    ```
-    npm start
-    ```    
+```
+npm start
+```    
+
 or nodemon(make sure you have nodemon installed on your local sysytem, perhaps installed globally using)
 
-    ```
-    npm install -g nodemon
-    ```    
+```
+npm install -g nodemon
+```    
+
 then you run the app with 
 
-    ```
-    npm run dev
-    ```    
+```
+npm run dev
+```    
+
 By default, the applictaion is running on PORT 3000, this port can be changed in ```api/bin/www``` file on line 8.
 
 To test the application, open you browser and type this in the address bar
